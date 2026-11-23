@@ -18,13 +18,14 @@ Run it by opening `index.html` in a browser (`open index.html`).
 After any change to `index.html`, the two `srcdoc` copies go stale. They were regenerated with a perl script (python3 isn't installed) that:
 1. reads `index.html` and replaces `let todos = load('todos', []);` with a seeded array (six sample items; dates are fixed in Nov–Dec 2026, so they eventually become overdue);
 2. HTML-escapes `& < > "`;
-3. substitutes it into every `srcdoc="[^"]*"` in `mockup.html` (it dies unless there are exactly 2 iframes).
+3. substitutes it into every `srcdoc="[^"]*"` in `mockup.html` (it dies unless there are exactly 2 iframes). Each copy also gets its own status-bar height: it replaces `--sat: env(safe-area-inset-top, 0px);` with `--sat: 54px;` (iPhone, first frame) or `--sat: 32px;` (Galaxy, second frame), because an iframe has no real safe area.
 
-That script lives in a session scratchpad and may no longer exist. If it's gone, rewrite it to do the same three steps. The seed anchor string above must stay in `index.html` or the regeneration breaks.
+That script lives in a session scratchpad and may no longer exist. If it's gone, rewrite it to do the same three steps. The seed anchor string above and the `--sat` line must stay in `index.html` or the regeneration breaks.
 
 ## Architecture of index.html
 
 - **State**: a `todos` array of `{id, text, done, cat, due, time}`, persisted to `localStorage` key `todos`. Theme is stored under `theme`. All storage access is wrapped in try/catch, since it throws in sandboxed or `data:` contexts.
+- **Frozen header**: `<header id="top">` (title, add form, filter) is `position: sticky; top: 0`, padded by `--sat` (`env(safe-area-inset-top)`, enabled by `viewport-fit=cover`) so it clears the phone status bar. The theme toggle is offset by `--sat` too.
 - **Rendering**: `render()` rebuilds the whole `<ul id="list">` from `todos` each time. It filters by the current category filter, then sorts: done items last, then by `sortKey` (`due + ' ' + (time||'23:59')`, with `'9999'` for items with no due date). Overdue is computed by comparing `sortKey` to a local "now" key.
 - **Events**: a single delegated handler on the list, driven by `data-act` attributes (toggle, edit, del, save, cancel). Rows toggle into an inline edit mode; Enter commits and Esc cancels.
 - **Categories**: exactly three, defined in `PRESETS` (Work, Personal, Others) with a colour each. Rows set a per-row `--c` CSS variable and tint themselves with `color-mix`. Stored entries with any other category are migrated to "Others" on load.

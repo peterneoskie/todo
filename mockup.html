@@ -36,12 +36,13 @@
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
 &lt;meta charset=&quot;utf-8&quot;&gt;
-&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, viewport-fit=cover&quot;&gt;
 &lt;title&gt;To-Do&lt;/title&gt;
 &lt;style&gt;
   :root {
     --bg: #ffffff; --fg: #111111; --muted: #888888; --line: #cccccc;
     --field: #ffffff; --btn: #eeeeee; --over: #cc0000; --link: #333355;
+    --sat: 54px;
     color-scheme: light;
   }
   :root[data-theme=dark] {
@@ -49,12 +50,15 @@
     --field: #22252b; --btn: #2d3036; --over: #ff7b7b; --link: #aab4ff;
     color-scheme: dark;
   }
-  body { font-family: system-ui, sans-serif; max-width: 460px; margin: 40px auto; padding: 0 16px;
+  body { font-family: system-ui, sans-serif; max-width: 460px; margin: 0 auto; padding: 0 16px 40px;
          background: var(--bg); color: var(--fg); }
-  h1 { text-align: center; color: var(--over); }
+  h1 { text-align: center; color: var(--over); margin: 0 0 12px; }
+  /* frozen top section: title, add form, filter */
+  #top { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: calc(var(--sat) + 24px) 0 10px;
+         border-bottom: 1px solid var(--line); margin-bottom: 12px; }
 
   /* always-visible dark / light switch */
-  #theme { position: fixed; top: 12px; right: 12px; z-index: 10; width: 64px; height: 32px; padding: 0;
+  #theme { position: fixed; top: calc(var(--sat) + 12px); right: 12px; z-index: 10; width: 64px; height: 32px; padding: 0;
            border: 1px solid var(--line); border-radius: 16px; background: var(--btn); color: var(--fg);
            display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
   #theme .ico { width: 18px; height: 18px; margin: 0 7px; position: relative; z-index: 1; }
@@ -110,6 +114,7 @@
     &lt;path d=&quot;M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z&quot;/&gt;
   &lt;/svg&gt;
 &lt;/button&gt;
+&lt;header id=&quot;top&quot;&gt;
 &lt;h1&gt;To-Do&lt;/h1&gt;
 &lt;form id=&quot;form&quot;&gt;
   &lt;input type=&quot;text&quot; id=&quot;text&quot; placeholder=&quot;What needs doing?&quot; autocomplete=&quot;off&quot; required&gt;
@@ -120,6 +125,7 @@
 &lt;/form&gt;
 &lt;div class=&quot;flabel&quot;&gt;Filter list by category&lt;/div&gt;
 &lt;div id=&quot;filter&quot;&gt;&lt;/div&gt;
+&lt;/header&gt;
 &lt;ul id=&quot;list&quot;&gt;&lt;/ul&gt;
 
 &lt;script&gt;
@@ -335,12 +341,13 @@
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
 &lt;meta charset=&quot;utf-8&quot;&gt;
-&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, viewport-fit=cover&quot;&gt;
 &lt;title&gt;To-Do&lt;/title&gt;
 &lt;style&gt;
   :root {
     --bg: #ffffff; --fg: #111111; --muted: #888888; --line: #cccccc;
     --field: #ffffff; --btn: #eeeeee; --over: #cc0000; --link: #333355;
+    --sat: 32px;
     color-scheme: light;
   }
   :root[data-theme=dark] {
@@ -348,12 +355,15 @@
     --field: #22252b; --btn: #2d3036; --over: #ff7b7b; --link: #aab4ff;
     color-scheme: dark;
   }
-  body { font-family: system-ui, sans-serif; max-width: 460px; margin: 40px auto; padding: 0 16px;
+  body { font-family: system-ui, sans-serif; max-width: 460px; margin: 0 auto; padding: 0 16px 40px;
          background: var(--bg); color: var(--fg); }
-  h1 { text-align: center; color: var(--over); }
+  h1 { text-align: center; color: var(--over); margin: 0 0 12px; }
+  /* frozen top section: title, add form, filter */
+  #top { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: calc(var(--sat) + 24px) 0 10px;
+         border-bottom: 1px solid var(--line); margin-bottom: 12px; }
 
   /* always-visible dark / light switch */
-  #theme { position: fixed; top: 12px; right: 12px; z-index: 10; width: 64px; height: 32px; padding: 0;
+  #theme { position: fixed; top: calc(var(--sat) + 12px); right: 12px; z-index: 10; width: 64px; height: 32px; padding: 0;
            border: 1px solid var(--line); border-radius: 16px; background: var(--btn); color: var(--fg);
            display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
   #theme .ico { width: 18px; height: 18px; margin: 0 7px; position: relative; z-index: 1; }
@@ -409,6 +419,7 @@
     &lt;path d=&quot;M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z&quot;/&gt;
   &lt;/svg&gt;
 &lt;/button&gt;
+&lt;header id=&quot;top&quot;&gt;
 &lt;h1&gt;To-Do&lt;/h1&gt;
 &lt;form id=&quot;form&quot;&gt;
   &lt;input type=&quot;text&quot; id=&quot;text&quot; placeholder=&quot;What needs doing?&quot; autocomplete=&quot;off&quot; required&gt;
@@ -419,6 +430,7 @@
 &lt;/form&gt;
 &lt;div class=&quot;flabel&quot;&gt;Filter list by category&lt;/div&gt;
 &lt;div id=&quot;filter&quot;&gt;&lt;/div&gt;
+&lt;/header&gt;
 &lt;ul id=&quot;list&quot;&gt;&lt;/ul&gt;
 
 &lt;script&gt;
