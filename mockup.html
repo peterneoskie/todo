@@ -51,7 +51,7 @@
   }
   body { font-family: system-ui, sans-serif; max-width: 460px; margin: 40px auto; padding: 0 16px;
          background: var(--bg); color: var(--fg); }
-  h1 { text-align: center; }
+  h1 { text-align: center; color: var(--over); }
 
   /* always-visible dark / light switch */
   #theme { position: fixed; top: 12px; right: 12px; z-index: 10; width: 64px; height: 32px; padding: 0;
@@ -65,7 +65,8 @@
   /* category buttons */
   .cats { display: flex; flex-wrap: wrap; gap: 6px; }
   #form .cats { flex: 1 1 100%; }
-  #filter { margin-top: 12px; }
+  #filter { margin-top: 4px; }
+  .flabel { margin-top: 16px; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
   button.cat { border: 2px solid var(--c); background: transparent; color: var(--fg); border-radius: 16px;
                padding: 9px 16px; font-size: 15px; cursor: pointer; }
   button.cat.on { background: var(--c); color: #fff; }
@@ -117,6 +118,7 @@
   &lt;input type=&quot;time&quot; id=&quot;duet&quot; title=&quot;Due time (optional)&quot;&gt;
   &lt;button&gt;Add&lt;/button&gt;
 &lt;/form&gt;
+&lt;div class=&quot;flabel&quot;&gt;Filter list by category&lt;/div&gt;
 &lt;div id=&quot;filter&quot;&gt;&lt;/div&gt;
 &lt;ul id=&quot;list&quot;&gt;&lt;/ul&gt;
 
@@ -348,7 +350,7 @@
   }
   body { font-family: system-ui, sans-serif; max-width: 460px; margin: 40px auto; padding: 0 16px;
          background: var(--bg); color: var(--fg); }
-  h1 { text-align: center; }
+  h1 { text-align: center; color: var(--over); }
 
   /* always-visible dark / light switch */
   #theme { position: fixed; top: 12px; right: 12px; z-index: 10; width: 64px; height: 32px; padding: 0;
@@ -362,7 +364,8 @@
   /* category buttons */
   .cats { display: flex; flex-wrap: wrap; gap: 6px; }
   #form .cats { flex: 1 1 100%; }
-  #filter { margin-top: 12px; }
+  #filter { margin-top: 4px; }
+  .flabel { margin-top: 16px; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
   button.cat { border: 2px solid var(--c); background: transparent; color: var(--fg); border-radius: 16px;
                padding: 9px 16px; font-size: 15px; cursor: pointer; }
   button.cat.on { background: var(--c); color: #fff; }
@@ -414,6 +417,7 @@
   &lt;input type=&quot;time&quot; id=&quot;duet&quot; title=&quot;Due time (optional)&quot;&gt;
   &lt;button&gt;Add&lt;/button&gt;
 &lt;/form&gt;
+&lt;div class=&quot;flabel&quot;&gt;Filter list by category&lt;/div&gt;
 &lt;div id=&quot;filter&quot;&gt;&lt;/div&gt;
 &lt;ul id=&quot;list&quot;&gt;&lt;/ul&gt;
 
